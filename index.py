@@ -13,6 +13,16 @@ from psycopg.rows import dict_row
 
 app = FastAPI()
 
+
+@app.get("/")
+def root():
+    return {
+        "service": "leva-backend",
+        "ok": True,
+        "try": ["/api/health", "/api/telemetry (POST)", "/api/telegram/webhook (POST)"],
+    }
+
+
 DATABASE_URL = os.environ.get("DATABASE_URL", "")
 LEVA_API_KEY = os.environ.get("LEVA_API_KEY", "")
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
